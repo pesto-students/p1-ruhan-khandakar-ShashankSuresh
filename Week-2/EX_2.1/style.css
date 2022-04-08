@@ -12,6 +12,11 @@ body {
   font-size: 10px;
 }
 
+main {
+  width: 80%;
+  margin: auto;
+}
+
 header {
   margin: 3rem 0;
   display: flex;
@@ -19,9 +24,70 @@ header {
 }
 
 header h1 {
-  width: 50%;
+  width: 70vw;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 500;
   line-height: 1.2;
+  text-decoration: underline;
+}
+
+p {
+  font-size: 1.1rem;
+  opacity: 70%;
+}
+
+.details {
+  display: grid;
+  grid-template-areas: "article1 article2" "image article3" "image article4";
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  box-shadow: rgba(17, 12, 46, 0.2) 0px 3px 10px 0px;
+  border-radius: 1.5rem;
+}
+
+.details {
+  margin-bottom: 1rem;
+}
+.details article {
+  box-shadow: rgba(17, 12, 46, 0.1) 0px 3px 10px 0px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 15px;
+}
+.details article h2 {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+.details article:nth-of-type(1) {
+  grid-area: article1;
+}
+.details article:nth-of-type(2) {
+  grid-area: article2;
+}
+.details article:nth-of-type(3) {
+  grid-area: article3;
+}
+.details article:nth-of-type(4) {
+  grid-area: article4;
+}
+.details .image {
+  grid-area: image;
+}
+
+@media (max-width: 980px) {
+  .details {
+    grid-template-columns: 1fr;
+    grid-template-areas: "article1" "article2" "image" "article3" "article4";
+  }
+}
+@media (max-width: 480px) {
+  header h1 {
+    width: 100%;
+    font-size: 2rem;
+  }
 }
