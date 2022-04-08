@@ -91,3 +91,11 @@ img {
     font-size: 2rem;
   }
 }
+
+/* Form Section's Style */
+.form__section {
+  margin: 3rem 0;
+  box-shadow: rgba(17, 12, 46, 0.1) 0px 3px 10px 0px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 15px;
+}

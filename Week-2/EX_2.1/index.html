@@ -61,6 +61,97 @@
           </p>
         </article>
       </section>
+      <section class="form__section">
+        <form action="/" method="post">
+          <div class="form-group__radio">
+            <label for="title">Title</label>
+            <input type="radio" id="mr" name="title" value="mr" />
+            <label for="mr">Mr</label>
+            <input type="radio" id="mrs" name="title" value="mrs" />
+            <label for="mrs">Mrs</label>
+            <input type="radio" id="miss" name="title" value="miss" />
+            <label for="miss">Miss</label>
+          </div>
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input
+              type="text"
+              name="first_name"
+              id="first_name"
+              placeholder="ex. John"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input
+              type="text"
+              name="last_name"
+              id="last_name"
+              placeholder="ex. Doe"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="ex. john@gmail.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone_number">Phone Number</label>
+            <input
+              type="tel"
+              name="phone_number"
+              id="phone_number"
+              placeholder="ex. 9876543210"
+              pattern="[6-9]{1}[0-9]{9}"
+              title="Phone number with 6-9 and remaining 9 digit with 0-9"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="*******"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="conf_password">Confirm Password</label>
+            <input
+              type="password"
+              name="conf_password"
+              id="conf_password"
+              placeholder="*******"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <select name="country" id="country">
+              <option value="india">India</option>
+              <option value="australia">Australia</option>
+              <option value="usa">United States</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <input type="checkbox" name="tnc" id="tnx" />
+            <label for="tnx"
+              >I agree to the
+              <a href="/" target="_blank">terms and conditions</a></label
+            >
+          </div>
+        </form>
+      </section>
     </main>
   </body>
 </html>
