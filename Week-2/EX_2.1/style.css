@@ -239,3 +239,10 @@ input[type="checkbox"] {
   background-color: rgba(89, 92, 246, 0.814);
   transition: background-color 0.5s ease-in-out;
 }
+
+footer {
+  margin-bottom: 1rem;
+}
+footer p {
+  text-align: center;
+}
