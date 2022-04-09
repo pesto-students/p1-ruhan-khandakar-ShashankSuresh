@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@200;300;400;700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: #edf2f8;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  line-height: 1.7;
+  font-size: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  box-shadow: rgba(17, 12, 46, 0.2) 0px 1px 6px 0px;
+  padding: 1rem;
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  position: relative;
+
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+
+.container__text {
+  font-size: 2rem;
+}
+
+.box {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+
+  transition: all 1s ease-in-out;
+  transition: transform 1s linear;
+  transform-style: preserve-3D;
+}
+
+.box--red {
+  background: #f88c8b;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}
+.box--blue {
+  background: lightblue;
+  bottom: 0;
+  left: 0;
+  transform-origin: bottom left;
+}
+.box--yellow {
+  background: lightyellow;
+  top: 0;
+  right: 0;
+  transform-origin: top right;
+}
+.box--green {
+  background: lightgreen;
+  bottom: 0;
+  right: 0;
+  transform-origin: bottom right;
+}
+
+.container:hover .box--red,
+.container:hover .box--green {
+  transform: rotate(90deg);
+}
+
+.container:hover .box--yellow,
+.container:hover .box--blue {
+  transform: rotate(-90deg);
+}
