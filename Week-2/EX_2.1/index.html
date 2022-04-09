@@ -63,14 +63,22 @@
       </section>
       <section class="form__section">
         <form action="/" method="post">
-          <div class="form-group__radio">
+          <div class="form-group form-group__radio">
             <label for="title">Title</label>
-            <input type="radio" id="mr" name="title" value="mr" />
-            <label for="mr">Mr</label>
-            <input type="radio" id="mrs" name="title" value="mrs" />
-            <label for="mrs">Mrs</label>
-            <input type="radio" id="miss" name="title" value="miss" />
-            <label for="miss">Miss</label>
+            <div class="label__container">
+              <div class="abel__container__group">
+                <input type="radio" id="mr" name="title" value="mr" required />
+                <label for="mr">Mr</label>
+              </div>
+              <div class="abel__container__group">
+                <input type="radio" id="mrs" name="title" value="mrs" />
+                <label for="mrs">Mrs</label>
+              </div>
+              <div class="abel__container__group">
+                <input type="radio" id="miss" name="title" value="miss" />
+                <label for="miss">Miss</label>
+              </div>
+            </div>
           </div>
           <div class="form-group">
             <label for="first_name">First Name</label>
@@ -143,12 +151,16 @@
             </select>
           </div>
 
-          <div class="form-group">
-            <input type="checkbox" name="tnc" id="tnx" />
-            <label for="tnx"
+          <div class="form-group form-group__checkbox">
+            <label class="tnc__container"
               >I agree to the
-              <a href="/" target="_blank">terms and conditions</a></label
-            >
+              <a href="/" target="_blank">terms and conditions</a>
+              <input type="checkbox" name="tnc" required />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="form-group">
+            <button type="submit">Sign Up</button>
           </div>
         </form>
       </section>
