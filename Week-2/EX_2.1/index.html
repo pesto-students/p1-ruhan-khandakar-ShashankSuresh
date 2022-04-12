@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lorem Ipsum</title>
+    <meta
+      name="description"
+      content="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+    />
+    <link href="style.css" rel="preload" as="style" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+      </header>
+      <section class="details">
+        <article>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita,
+            ullam fugit? Accusantium voluptates dolor placeat commodi, molestiae
+            nesciunt labore maiores vitae ipsam laborum fugiat quis earum
+          </p>
+        </article>
+        <article>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+            veritatis quia nemo voluptatum necessitatibus praesentium quidem
+            dignissimos modi, at sed velit dicta quis reprehenderit, qui impedit
+            temporibus veniam tempora
+          </p>
+        </article>
+        <section class="image">
+          <div class="image__container">
+            <img
+              height="100"
+              width="100"
+              src="./assets/demo.webp"
+              alt="demo"
+              loading="lazy"
+            />
+          </div>
+        </section>
+        <article>
+          <h2>Lorem ipsum dolor sit amet.</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
+            nostrum illo optio in, repellendus asperiores explicabo. Beatae
+            laudantium suscipit incidunt qui
+          </p>
+        </article>
+        <article>
+          <h2>Lorem ipsum dolor sit amet.</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+            voluptatum culpa consequatur mollitia placeat illum id, recusandae
+            laborum quod neque porro.
+          </p>
+        </article>
+      </section>
+      <section class="form__section">
+        <form action="/" method="post">
+          <div class="form-group form-group__radio">
+            <label for="title">Title</label>
+            <div class="label__container">
+              <div class="abel__container__group">
+                <input type="radio" id="mr" name="title" value="mr" required />
+                <label for="mr">Mr</label>
+              </div>
+              <div class="abel__container__group">
+                <input type="radio" id="mrs" name="title" value="mrs" />
+                <label for="mrs">Mrs</label>
+              </div>
+              <div class="abel__container__group">
+                <input type="radio" id="miss" name="title" value="miss" />
+                <label for="miss">Miss</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input
+              type="text"
+              name="first_name"
+              id="first_name"
+              placeholder="ex. John"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input
+              type="text"
+              name="last_name"
+              id="last_name"
+              placeholder="ex. Doe"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="ex. john@gmail.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone_number">Phone Number</label>
+            <input
+              type="tel"
+              name="phone_number"
+              id="phone_number"
+              placeholder="ex. 9876543210"
+              pattern="[6-9]{1}[0-9]{9}"
+              title="Phone number with 6-9 and remaining 9 digit with 0-9"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="*******"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="conf_password">Confirm Password</label>
+            <input
+              type="password"
+              name="conf_password"
+              id="conf_password"
+              placeholder="*******"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="country">Country</label>
+            <select name="country" id="country">
+              <option value="india">India</option>
+              <option value="australia">Australia</option>
+              <option value="usa">United States</option>
+            </select>
+          </div>
+
+          <div class="form-group form-group__checkbox">
+            <label class="tnc__container"
+              >I agree to the
+              <a href="/" target="_blank">terms and conditions</a>
+              <input type="checkbox" name="tnc" required />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="form-group">
+            <button type="submit">Sign Up</button>
+          </div>
+        </form>
+      </section>
+      <footer>
+        <p>&#169; 2022 | A Lorem Ipsum Website. All rights reserved.</p>
+      </footer>
+    </main>
+  </body>
+</html>
