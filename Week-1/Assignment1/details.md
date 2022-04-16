@@ -1,6 +1,6 @@
 # When a user enters an URL in the browser, how does the browser fetch the desired result ?
 
-![Untitled](assets/Untitled.png)
+![Untitled](assets/workflow.png)
 
 **Parsing HTML**
 
@@ -10,7 +10,7 @@
 - Will do speculative parsing
 - It’s reentrant
 
-![Untitled](assets/Untitled%201.png)
+![Untitled](assets/tokeniser.png)
 
 **Tokensiser → tag parsing → <div> (start tag), </div>(end tag)**
 
