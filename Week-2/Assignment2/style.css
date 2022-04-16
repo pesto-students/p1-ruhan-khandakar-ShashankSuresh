@@ -4,6 +4,16 @@
   margin: 0;
   padding: 0;
 }
+
+:root {
+  --body-background-color: #edf2f8;
+  --light-red: #f88c8b;
+  --light-blue: lightblue;
+  --light-yellow: lightyellow;
+  --light-green: lightgreen;
+  --shadow-color: rgba(17, 12, 46, 0.2);
+}
+
 html,
 body {
   height: 100%;
@@ -11,7 +21,7 @@ body {
 }
 
 body {
-  background: #edf2f8;
+  background: var(--body-background-color);
   font-family: "Barlow Semi Condensed", sans-serif;
   line-height: 1.7;
   font-size: 10px;
@@ -22,7 +32,7 @@ body {
 }
 
 .container {
-  box-shadow: rgba(17, 12, 46, 0.2) 0px 1px 6px 0px;
+  box-shadow: var(--shadow-color) 0px 1px 6px 0px;
   padding: 1rem;
   cursor: pointer;
   width: 200px;
@@ -34,11 +44,13 @@ body {
   align-items: center;
 }
 
-.container__text {
+.container .container__text {
   font-size: 2rem;
+  width: 100%;
+  text-align: center;
 }
 
-.box {
+.container .box {
   height: 100px;
   width: 100px;
   position: absolute;
@@ -48,26 +60,26 @@ body {
   transform-style: preserve-3D;
 }
 
-.box--red {
-  background: #f88c8b;
+.container .box--red {
+  background: var(--light-red);
   top: 0;
   left: 0;
   transform-origin: top left;
 }
-.box--blue {
-  background: lightblue;
+.container .box--blue {
+  background: var(--light-blue);
   bottom: 0;
   left: 0;
   transform-origin: bottom left;
 }
-.box--yellow {
-  background: lightyellow;
+.container .box--yellow {
+  background: var(--light-yellow);
   top: 0;
   right: 0;
   transform-origin: top right;
 }
-.box--green {
-  background: lightgreen;
+.container .box--green {
+  background: var(--light-green);
   bottom: 0;
   right: 0;
   transform-origin: bottom right;
