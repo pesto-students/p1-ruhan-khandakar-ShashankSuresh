@@ -1,88 +1,20 @@
-class CustomPromise {
-  resolvedData;
-  rejectedData;
+/* 
+  Implement a function named getNumber which generates a random number. If randomNumber is divisible by 5 it will reject the promise else it will resolve the promise. Let’s also keep the promise resolution/rejection time as a variable.1.JS promises should not be used.2.A custom promise function should be created.3.This function should be able to handle all 3 states Resolve, Reject and Fulfilled.4.Should be able to accept callbacks as props.
+*/
 
-  resolveChain = [];
-  rejectChain = [];
+const CustomPromise = require("./customPromise");
 
-  status = "PENDING";
-
-  static resolve(value) {
-    return new CustomPromise((resolve) => {
-      resolve(value);
-    });
-  }
-  static reject(value) {
-    return new CustomPromise((_, reject) => {
-      reject(value);
-    });
-  }
-
-  constructor(executor) {
-    executor(this._resolve, this._reject);
-  }
-
-  _resolve = (value) => {
-    this.resolvedData = value;
-    this.status = "FULFILLED";
-
-    if (this.resolveChain.length) {
-      // For async resolve function
-      this.resolveChain.reduce((acc, fn) => fn(acc), this.resolvedData);
+const getNumber = () => {
+  const randomNumber = Math.floor(Math.random() * 100 + 1);
+  const customPromise = new CustomPromise((resolve, reject) => {
+    if (randomNumber % 5 === 0) {
+      reject(`Number is divisible by 5, ${randomNumber}`);
+    } else {
+      resolve(`Number is ${randomNumber}`);
     }
-  };
-
-  _reject = (value) => {
-    this.rejectedData = value;
-    this.status = "REJECTED";
-
-    if (this.rejectChain.length) {
-      // For async resolve function
-      this.rejectChain.reduce((acc, fn) => fn(acc), this.rejectedData);
-    }
-  };
-
-  then(callbackFunc) {
-    this.resolveChain.push(callbackFunc);
-    if (this.status === "FULFILLED") {
-      //   for sync executor
-      this.resolveChain.reduce((acc, fn) => fn(acc), this.resolvedData);
-    }
-    return this;
-  }
-  catch(callbackFunc) {
-    this.rejectChain.push(callbackFunc);
-    if (this.status === "REJECTED") {
-      //   for sync executor
-      this.rejectChain.reduce((acc, fn) => fn(acc), this.rejectedData);
-    }
-    return this;
-  }
-}
-
-const promise = new CustomPromise((resolve, reject) => {
-  setTimeout(() => {
-    resolve("Ruhan");
-  }, 5000);
-});
-
-promise
-  .then((res) => {
-    console.log("res", res);
-  })
-  .catch((err) => {
-    console.log("err", err);
   });
 
-CustomPromise.resolve("Hello Static Resolve")
-  .then((res) => {
-    return new CustomPromise((resolve) => {
-      resolve("Ruhan");
-    });
-  })
-  .then((res) => {
-    console.log("Nested: ", res);
-  });
-CustomPromise.reject("Hello Static Reject").catch((res) => {
-  console.log("res 2", res);
-});
+  customPromise.then(console.log).catch(console.error);
+};
+
+getNumber();
