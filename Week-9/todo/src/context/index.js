@@ -12,14 +12,27 @@ const TodoContextProvider = ({ children }) => {
 
   const updateNote = () => {
     if (state.noteInputData.title || state.noteInputData.note) {
-      const allUpdatedNotes = [
-        {
-          ...state.noteInputData,
-          createdDate: new Date().getTime(),
-          id: uuidv4(),
-        },
-        ...state.allNotes,
-      ];
+      let allUpdatedNotes = [];
+
+      if (state.noteInputData.id) {
+        allUpdatedNotes = state.allNotes.map((note) => {
+          if (note.id === state.noteInputData.id) {
+            note.title = state.noteInputData.title;
+            note.note = state.noteInputData.note;
+            note.updated = new Date().getTime();
+          }
+          return note;
+        });
+      } else {
+        allUpdatedNotes = [
+          {
+            ...state.noteInputData,
+            createdDate: new Date().getTime(),
+            id: uuidv4(),
+          },
+          ...state.allNotes,
+        ];
+      }
       dispatch({
         type: UPDATE_ALL_NOTES,
         payload: allUpdatedNotes,
@@ -37,9 +50,23 @@ const TodoContextProvider = ({ children }) => {
     });
   };
 
+  const deleteNote = (nodeId) => {
+    const selectedNoteId = state.noteInputData.id || nodeId;
+    let allUpdatedNotes = state.allNotes.filter(
+      (note) => note.id !== selectedNoteId
+    );
+
+    dispatch({
+      type: UPDATE_ALL_NOTES,
+      payload: allUpdatedNotes,
+    });
+    storeInLocalStorage("notes", allUpdatedNotes);
+  };
+
   const actions = {
     updateNote,
     fetchNotes,
+    deleteNote,
   };
 
   return (

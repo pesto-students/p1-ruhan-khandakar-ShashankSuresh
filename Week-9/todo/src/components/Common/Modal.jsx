@@ -1,0 +1,44 @@
+import PropTypes from "prop-types";
+
+const Modal = ({ open, children, handleClose, footer }) => {
+  const handleModalClose = ({ target: { dataset } }) => {
+    const { name } = dataset;
+
+    if (name === "modal-body") {
+      handleClose();
+    }
+  };
+
+  return (
+    <>
+      {open ? (
+        <>
+          <div
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none "
+            data-name="modal-body"
+            onClick={handleModalClose}
+          >
+            <div className="relative  my-6 mx-auto max-w-3xl w-[50vw]">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-3 pt-4">
+                {children}
+                {/*footer*/}
+                <div className="p-2 pb-0 rounded-b">{footer}</div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+    </>
+  );
+};
+
+Modal.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  footer: PropTypes.node,
+};
+
+export default Modal;

@@ -9,12 +9,20 @@ import { TodoContext } from "context";
 import { INPUT_BOX_CLICKED } from "context/actionTypes";
 
 const App = () => {
-  const { dispatch, updateNote, fetchNotes } = useContext(TodoContext);
+  const {
+    dispatch,
+    updateNote,
+    fetchNotes,
+    state: { noteInputData },
+  } = useContext(TodoContext);
 
-  const handleBodyClick = ({ target: { dataset } }) => {
+  const handleBodyClick = (event) => {
+    const {
+      target: { dataset },
+    } = event;
     const { box } = dataset || {};
 
-    if (box !== "input") {
+    if (box !== "input" && !noteInputData.id) {
       updateNote();
       dispatch({
         type: INPUT_BOX_CLICKED,

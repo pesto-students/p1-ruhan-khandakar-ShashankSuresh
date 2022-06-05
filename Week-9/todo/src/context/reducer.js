@@ -2,6 +2,7 @@ import {
   INPUT_BOX_CLICKED,
   INPUT_TEXT_CHANGE,
   UPDATE_ALL_NOTES,
+  UPDATE_NOTE,
 } from "./actionTypes";
 
 export const INITIAL_STATE = {
@@ -17,6 +18,11 @@ export const INITIAL_STATE = {
 const todoReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action || {};
   switch (type) {
+    case UPDATE_NOTE:
+      return {
+        ...state,
+        noteInputData: payload,
+      };
     case INPUT_BOX_CLICKED:
       return {
         ...state,
