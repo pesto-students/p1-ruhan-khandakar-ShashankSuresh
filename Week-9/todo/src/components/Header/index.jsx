@@ -4,9 +4,9 @@ const Header = () => {
   return (
     <div className="flex items-center">
       <img src={DarkNoteBookIcon} alt="dark_notebook" className="w-14" />
-      <pn className="pl-2 text-xl uppercase font-Playfair font-bold italic">
+      <p className="pl-2 text-xl uppercase font-Playfair font-bold italic">
         Notebook
-      </pn>
+      </p>
     </div>
   );
 };

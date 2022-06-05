@@ -1,0 +1,1 @@
+export const INPUT_BOX_CLICKED = "INPUT_BOX_CLICKED";
