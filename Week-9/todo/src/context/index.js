@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useReducer, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -18,6 +19,7 @@ const TodoContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, INITIAL_STATE);
 
   const updateNote = () => {
+    console.log("state.noteInputData", state.noteInputData);
     if (state.noteInputData.title || state.noteInputData.note) {
       let allUpdatedNotes = [];
 

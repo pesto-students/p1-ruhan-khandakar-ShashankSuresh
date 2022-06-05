@@ -39,6 +39,11 @@ const todoReducer = (state = INITIAL_STATE, action) => {
     case INPUT_BOX_CLICKED:
       return {
         ...state,
+        noteInputData: {
+          title: "",
+          note: "",
+          createdDate: null,
+        },
         isInputBoxClicked: payload,
       };
     case INPUT_TEXT_CHANGE:

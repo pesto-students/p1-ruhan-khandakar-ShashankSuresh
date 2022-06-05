@@ -20,9 +20,15 @@ const App = () => {
     const {
       target: { dataset },
     } = event;
-    const { box } = dataset || {};
+    const { box, type } = dataset || {};
+    const { type: parentDataType } = event.target.parentElement.dataset || {};
 
-    if (box !== "input" && !noteInputData.id) {
+    if (
+      box !== "input" &&
+      !noteInputData.id &&
+      type !== "not-call" &&
+      parentDataType !== "not-call"
+    ) {
       updateNote();
       dispatch({
         type: INPUT_BOX_CLICKED,
