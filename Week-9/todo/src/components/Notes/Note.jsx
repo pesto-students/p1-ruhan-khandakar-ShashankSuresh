@@ -1,5 +1,11 @@
-import { useState, useContext } from "react";
-import { AiFillCheckCircle, AiFillDelete } from "react-icons/ai";
+import { useContext, useState } from "react";
+import {
+  AiFillCheckCircle,
+  AiFillDelete,
+  AiOutlineCheckCircle,
+  AiFillPushpin,
+  AiOutlinePushpin,
+} from "react-icons/ai";
 
 import Modal from "components/Common/Modal";
 import MoreDetails, { Footer } from "./MoreDetails";
@@ -7,10 +13,17 @@ import { TodoContext } from "context";
 import { UPDATE_NOTE } from "context/actionTypes";
 
 const Note = ({ note }) => {
-  const [open, setOpen] = useState(false);
-
-  const { dispatch, updateNote, deleteNote, toggleNoteCompletion } =
-    useContext(TodoContext);
+  const {
+    dispatch,
+    updateNote,
+    deleteNote,
+    toggleNoteCompletion,
+    togglePinned,
+    handleModalToggle,
+    editNote,
+    state: { open },
+  } = useContext(TodoContext);
+  const [editedNotesData, setEditedNotesData] = useState({});
 
   const handleDelete = (e) => {
     e.stopPropagation();
@@ -20,15 +33,26 @@ const Note = ({ note }) => {
     e.stopPropagation();
     toggleNoteCompletion(note.id);
   };
+  const handlePinned = (e) => {
+    e.stopPropagation();
+    togglePinned(note.id);
+  };
+
   const handleDetails = () => {
     dispatch({
       type: UPDATE_NOTE,
       payload: note,
     });
-    setOpen(true);
+    handleModalToggle(true);
   };
   const handleModalClose = () => {
-    setOpen(!open);
+    if (Object.keys(editedNotesData).length) {
+      editNote({
+        ...note,
+        ...editedNotesData,
+      });
+    }
+    handleModalToggle();
     updateNote();
   };
 
@@ -39,10 +63,18 @@ const Note = ({ note }) => {
         onClick={handleDetails}
       >
         <button
-          className="hidden ease-in-out text-3xl absolute -top-2.5 -left-2.5 group-hover:inline-block"
+          className="hidden ease-in-out text-3xl absolute -top-2.5 -left-2.5 group-hover:inline-block "
           onClick={handleComplete}
+          title="Completed/Uncompleted"
         >
-          <AiFillCheckCircle />
+          {note.completed ? <AiOutlineCheckCircle /> : <AiFillCheckCircle />}
+        </button>
+        <button
+          className="hidden ease-in-out text-2xl absolute top-1 right-1 group-hover:inline-block "
+          onClick={handlePinned}
+          title="Pinned/Unpinned"
+        >
+          {note.isPinned ? <AiOutlinePushpin /> : <AiFillPushpin />}
         </button>
         <div className="details">
           {note.title && (
@@ -70,7 +102,10 @@ const Note = ({ note }) => {
           handleClose={handleModalClose}
           footer={<Footer handleModalClose={handleModalClose} />}
         >
-          <MoreDetails />
+          <MoreDetails
+            setNotesData={setEditedNotesData}
+            notesData={editedNotesData}
+          />
         </Modal>
       )}
     </>

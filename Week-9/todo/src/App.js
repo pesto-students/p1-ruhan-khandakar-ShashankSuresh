@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 
 import Header from "components/Header";
 import InputBox from "components/Input";
-import Notes from "components/Notes";
+import AllNotes from "components/Notes";
 
 import { TodoContext } from "context";
 import { INPUT_BOX_CLICKED } from "context/actionTypes";
@@ -37,13 +37,13 @@ const App = () => {
 
   return (
     <div
-      className="w-full h-full"
+      className="w-full h-full p-4"
       data-toggle="input-box"
       onClickCapture={handleBodyClick}
     >
       <Header />
       <InputBox />
-      <Notes />
+      <AllNotes />
     </div>
   );
 };

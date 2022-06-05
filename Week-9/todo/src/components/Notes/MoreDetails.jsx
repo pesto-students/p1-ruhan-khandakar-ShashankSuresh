@@ -1,14 +1,20 @@
 import { useContext } from "react";
-import { AiFillDelete } from "react-icons/ai";
+import {
+  AiFillDelete,
+  AiFillPushpin,
+  AiOutlinePushpin,
+  AiOutlineCheckCircle,
+  AiFillCheckCircle,
+} from "react-icons/ai";
 
 import { TodoContext } from "context";
-import { INPUT_TEXT_CHANGE } from "context/actionTypes";
 
 export const Footer = ({ handleModalClose }) => {
   const { deleteNote } = useContext(TodoContext);
 
   const handleDelete = () => {
     deleteNote();
+    handleModalClose();
   };
 
   return (
@@ -23,36 +29,72 @@ export const Footer = ({ handleModalClose }) => {
   );
 };
 
-const MoreDetails = () => {
+const MoreDetails = ({ setNotesData, notesData }) => {
   const {
-    dispatch,
+    togglePinned,
+    toggleNoteCompletion,
     state: { noteInputData },
   } = useContext(TodoContext);
 
-  const onChange = ({ target: { name, value } }) => {
-    dispatch({
-      type: INPUT_TEXT_CHANGE,
-      payload: { name, value },
+  const handleTitleChange = ({ currentTarget }) => {
+    setNotesData({
+      ...notesData,
+      title: currentTarget.textContent,
     });
   };
+
+  const handleNoteChange = ({ currentTarget }) => {
+    setNotesData({
+      ...notesData,
+      note: currentTarget.textContent,
+    });
+  };
+
+  const handlePinned = (e) => {
+    togglePinned(noteInputData.id);
+  };
+  const handleComplete = (e) => {
+    toggleNoteCompletion(noteInputData.id);
+  };
+
   return (
-    <div className="p-6 h-[80vh] overflow-y-auto ">
-      <textarea
-        className="resize-none w-full h-14 p-4 pt-3.5 text-lg outline-none rounded-none rounded-t-md "
-        placeholder="Title"
-        name="title"
-        onChange={onChange}
-        value={noteInputData.title}
-        data-box="input"
-      />
-      <textarea
-        className="resize-none w-full p-4 pt-3.5 text-sm outline-none rounded-none h-full"
-        placeholder="Take a note"
+    <div className="p-3 max-h-[80vh] min-h-[200px]  overflow-y-auto ">
+      <div className="flex justify-between items-center">
+        <div
+          contentEditable
+          name="note"
+          className="mb-2 flex-1"
+          onInput={handleTitleChange}
+          suppressContentEditableWarning
+        >
+          {noteInputData.title}
+        </div>
+        <div>
+          <button
+            className="text-xl mx-3"
+            onClick={handleComplete}
+            title="Completed/Uncompleted"
+          >
+            {noteInputData.completed ? (
+              <AiOutlineCheckCircle />
+            ) : (
+              <AiFillCheckCircle />
+            )}
+          </button>
+          <button className="text-xl mr-2" onClick={handlePinned}>
+            {noteInputData.isPinned ? <AiOutlinePushpin /> : <AiFillPushpin />}
+          </button>
+        </div>
+      </div>
+      <div
+        contentEditable
         name="note"
-        onChange={onChange}
-        value={noteInputData.note}
-        data-box="input"
-      />
+        className="mt-4"
+        onInput={handleNoteChange}
+        suppressContentEditableWarning
+      >
+        {noteInputData.note}
+      </div>
     </div>
   );
 };
