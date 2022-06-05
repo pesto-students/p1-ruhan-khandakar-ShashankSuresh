@@ -7,17 +7,24 @@ import { TodoContext } from "context";
 import { INPUT_BOX_CLICKED } from "context/actionTypes";
 
 const App = () => {
-  const { dispatch } = useContext(TodoContext);
+  const {
+    dispatch,
+    updateNote,
+    state: { allNotes },
+  } = useContext(TodoContext);
 
   const handleBodyClick = ({ target: { dataset } }) => {
     const { toggle } = dataset || {};
     if (toggle === "input-box") {
+      updateNote();
       dispatch({
         type: INPUT_BOX_CLICKED,
         payload: false,
       });
     }
   };
+
+  console.log("allNotes", allNotes);
 
   return (
     <div
