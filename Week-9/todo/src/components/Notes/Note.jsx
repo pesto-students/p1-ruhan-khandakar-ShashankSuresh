@@ -21,7 +21,7 @@ const Note = ({ note }) => {
     togglePinned,
     handleModalToggle,
     editNote,
-    state: { open },
+    state: { open, noteInputData },
   } = useContext(TodoContext);
   const [editedNotesData, setEditedNotesData] = useState({});
 
@@ -48,12 +48,13 @@ const Note = ({ note }) => {
   const handleModalClose = () => {
     if (Object.keys(editedNotesData).length) {
       editNote({
-        ...note,
+        ...noteInputData,
         ...editedNotesData,
       });
+    } else {
+      updateNote();
     }
     handleModalToggle();
-    updateNote();
   };
 
   return (
@@ -100,7 +101,7 @@ const Note = ({ note }) => {
         <Modal
           open={open}
           handleClose={handleModalClose}
-          footer={<Footer handleModalClose={handleModalClose} />}
+          footer={<Footer handleModalClose={handleModalToggle} />}
         >
           <MoreDetails
             setNotesData={setEditedNotesData}

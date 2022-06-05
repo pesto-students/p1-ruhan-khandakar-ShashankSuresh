@@ -19,7 +19,6 @@ const TodoContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(todoReducer, INITIAL_STATE);
 
   const updateNote = () => {
-    console.log("state.noteInputData", state.noteInputData);
     if (state.noteInputData.title || state.noteInputData.note) {
       let allUpdatedNotes = [];
 
@@ -69,6 +68,7 @@ const TodoContextProvider = ({ children }) => {
       type: UPDATE_ALL_NOTES,
       payload: allUpdatedNotes,
     });
+    console.log("allUpdatedNotes", allUpdatedNotes);
     storeInLocalStorage("notes", allUpdatedNotes);
   };
 
@@ -87,6 +87,7 @@ const TodoContextProvider = ({ children }) => {
   };
 
   const editNote = (updatedNote) => {
+    console.log("updatedNote", updatedNote);
     const allUpdatedNotes = state.allNotes.map((note) => {
       if (note.id === updatedNote.id) {
         if (updatedNote.title) {
@@ -100,6 +101,7 @@ const TodoContextProvider = ({ children }) => {
       }
       return note;
     });
+    console.log("allUpdatedNotes", allUpdatedNotes);
     dispatch({
       type: UPDATE_ALL_NOTES,
       payload: allUpdatedNotes,

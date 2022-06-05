@@ -20,7 +20,7 @@ const Modal = ({ open, children, handleClose, footer, header }) => {
           >
             <div className="relative  my-6 mx-auto max-w-3xl md:w-[50vw] w-[96vw]">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-3 pt-4">
+              <div className="border-0 rounded-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-3 pt-4">
                 {/* header */}
                 {header && (
                   <div className="flex items-start justify-between p-2 border-b border-solid border-slate-200 rounded-t">
@@ -34,7 +34,7 @@ const Modal = ({ open, children, handleClose, footer, header }) => {
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <div className="opacity-10 fixed inset-0 z-40 bg-slate-800/[.06]"></div>
         </>
       ) : null}
     </>

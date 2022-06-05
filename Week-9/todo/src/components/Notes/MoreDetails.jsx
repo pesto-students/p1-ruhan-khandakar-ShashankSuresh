@@ -10,11 +10,17 @@ import {
 import { TodoContext } from "context";
 
 export const Footer = ({ handleModalClose }) => {
-  const { deleteNote } = useContext(TodoContext);
+  const {
+    deleteNote,
+    state: { noteInputData },
+  } = useContext(TodoContext);
 
   const handleDelete = () => {
-    deleteNote();
-    handleModalClose();
+    deleteNote(noteInputData.id);
+    handleModalClose(false);
+  };
+  const handleClose = () => {
+    handleModalClose(false);
   };
 
   return (
@@ -22,7 +28,7 @@ export const Footer = ({ handleModalClose }) => {
       <button className="text-xl mr-2 text-red-500" onClick={handleDelete}>
         <AiFillDelete />
       </button>
-      <button className="text-md mr-2 font-bold" onClick={handleModalClose}>
+      <button className="text-md mr-2 font-bold" onClick={handleClose}>
         Close
       </button>
     </div>
@@ -67,7 +73,7 @@ const MoreDetails = ({ setNotesData, notesData }) => {
           onInput={handleTitleChange}
           suppressContentEditableWarning
         >
-          {noteInputData.title}
+          {noteInputData.title || "Enter Title"}
         </div>
         <div>
           <button
@@ -89,11 +95,11 @@ const MoreDetails = ({ setNotesData, notesData }) => {
       <div
         contentEditable
         name="note"
-        className="mt-4"
+        className="mt-4 min-h-[100px]"
         onInput={handleNoteChange}
         suppressContentEditableWarning
       >
-        {noteInputData.note}
+        {noteInputData.note || "Write some note"}
       </div>
     </div>
   );
