@@ -6,6 +6,8 @@ import {
   MODAL_TOGGLE,
   TOGGLE_PINNED_POST,
   TOGGLE_COMPLETION,
+  SEARCH_TEXT,
+  FILTER_NOTES,
 } from "./actionTypes";
 
 export const INITIAL_STATE = {
@@ -17,6 +19,8 @@ export const INITIAL_STATE = {
     createdDate: null,
   },
   allNotes: [],
+  searchText: "",
+  filteredNotes: null,
 };
 
 const todoReducer = (state = INITIAL_STATE, action) => {
@@ -60,6 +64,16 @@ const todoReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         allNotes: payload,
+      };
+    case SEARCH_TEXT:
+      return {
+        ...state,
+        searchText: payload,
+      };
+    case FILTER_NOTES:
+      return {
+        ...state,
+        filteredNotes: payload,
       };
     default:
       return state;

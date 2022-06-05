@@ -6,3 +6,5 @@ export const MODAL_TOGGLE = "MODAL_TOGGLE";
 export const TOGGLE_PINNED_POST = "TOGGLE_PINNED_POST";
 export const TOGGLE_COMPLETION = "TOGGLE_COMPLETION";
 export const EDIT_NOTE = "EDIT_NOTE";
+export const SEARCH_TEXT = "SEARCH_TEXT";
+export const FILTER_NOTES = "FILTER_NOTES";

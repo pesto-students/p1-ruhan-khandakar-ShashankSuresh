@@ -1,14 +1,16 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import todoReducer, { INITIAL_STATE } from "./reducer";
 import {
+  FILTER_NOTES,
   MODAL_TOGGLE,
+  SEARCH_TEXT,
   TOGGLE_COMPLETION,
   TOGGLE_PINNED_POST,
   UPDATE_ALL_NOTES,
 } from "./actionTypes";
-import { storeInLocalStorage, getDataFromLocalStorage } from "utils";
+import { storeInLocalStorage, getDataFromLocalStorage, debounce } from "utils";
 
 export const TodoContext = createContext();
 
@@ -124,6 +126,28 @@ const TodoContextProvider = ({ children }) => {
     });
   };
 
+  const handleFilter = (searchValue, allNotes) => {
+    const filteredNotes = allNotes.filter(
+      ({ title, note }) =>
+        title.toLowerCase().includes(searchValue.toLowerCase()) ||
+        note.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    dispatch({
+      type: FILTER_NOTES,
+      payload: filteredNotes,
+    });
+  };
+
+  const debouncedSearch = useCallback(debounce(handleFilter, 500), []);
+
+  const handleSearch = (searchText) => {
+    dispatch({
+      type: SEARCH_TEXT,
+      payload: searchText,
+    });
+    debouncedSearch(searchText, state.allNotes);
+  };
+
   const actions = {
     updateNote,
     fetchNotes,
@@ -132,6 +156,7 @@ const TodoContextProvider = ({ children }) => {
     togglePinned,
     handleModalToggle,
     editNote,
+    handleSearch,
   };
 
   return (

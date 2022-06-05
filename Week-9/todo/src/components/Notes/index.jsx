@@ -5,14 +5,16 @@ import Notes from "./Notes";
 
 const AllNotes = () => {
   const {
-    state: { allNotes },
+    state: { allNotes, filteredNotes },
   } = useContext(TodoContext);
 
+  const notesData = filteredNotes || allNotes;
+
   const getCompletedNotes = () =>
-    allNotes.filter((note) => note.completed && !note.isPinned);
-  const getPinnedNotes = () => allNotes.filter((note) => note.isPinned);
+    notesData.filter((note) => note.completed && !note.isPinned);
+  const getPinnedNotes = () => notesData.filter((note) => note.isPinned);
   const getOthersNotes = () =>
-    allNotes.filter((note) => !note.isPinned && !note.completed);
+    notesData.filter((note) => !note.isPinned && !note.completed);
 
   const getNotesLength = {
     completed: getCompletedNotes().length > 0 ? 1 : 0,
