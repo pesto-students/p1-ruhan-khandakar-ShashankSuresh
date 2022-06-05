@@ -1,4 +1,5 @@
 import { useContext, useRef, useEffect } from "react";
+import { AiFillDelete } from "react-icons/ai";
 
 import { TodoContext } from "context";
 import { INPUT_BOX_CLICKED, INPUT_TEXT_CHANGE } from "context/actionTypes";
@@ -25,10 +26,16 @@ const InputBox = () => {
   };
 
   const onChange = ({ target: { name, value } }) => {
-    console.log({ name, value });
     dispatch({
       type: INPUT_TEXT_CHANGE,
       payload: { name, value },
+    });
+  };
+
+  const handleDelete = () => {
+    dispatch({
+      type: INPUT_BOX_CLICKED,
+      payload: !isInputBoxClicked,
     });
   };
 
@@ -63,7 +70,13 @@ const InputBox = () => {
             value={noteInputData.note}
             ref={noteBodyRef}
           />
-          <div className="text-right bg-white rounded-b-md pb-2">
+          <div className="text-right bg-white rounded-b-md pb-2 flex justify-end items-center">
+            <button
+              className="text-xl mr-2 text-red-500"
+              onClick={handleDelete}
+            >
+              <AiFillDelete />
+            </button>
             <button className="pr-4 font-medium" onClick={handleClose}>
               Close
             </button>
