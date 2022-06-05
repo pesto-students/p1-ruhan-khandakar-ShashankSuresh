@@ -1,9 +1,11 @@
-function App() {
+import Header from "components/Header";
+
+const App = () => {
   return (
-    <div>
-      <p className="text-3xl font-bold underline ">Todo</p>
+    <div className="container">
+      <Header />
     </div>
   );
-}
+};
 
 export default App;
