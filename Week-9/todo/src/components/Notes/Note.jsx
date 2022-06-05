@@ -59,7 +59,7 @@ const Note = ({ note }) => {
   return (
     <>
       <div
-        className="group rounded p-6 w-[300px] bg-slate-100 border-gkBorderColor border-2 cursor-pointer hover:bg-slate-100 relative flex flex-col justify-between min-h-[120px] max-h-[400px] hover:shadow-md"
+        className="group rounded p-6 md:w-[300px] w-full bg-slate-100 border-gkBorderColor border-2 cursor-pointer hover:bg-slate-100 relative flex flex-col justify-between min-h-[120px] max-h-[400px] hover:shadow-md"
         onClick={handleDetails}
       >
         <button

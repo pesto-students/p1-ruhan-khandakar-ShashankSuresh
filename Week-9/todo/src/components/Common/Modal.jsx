@@ -18,7 +18,7 @@ const Modal = ({ open, children, handleClose, footer, header }) => {
             data-name="modal-body"
             onClick={handleModalClose}
           >
-            <div className="relative  my-6 mx-auto max-w-3xl w-[50vw]">
+            <div className="relative  my-6 mx-auto max-w-3xl md:w-[50vw] w-[96vw]">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none p-3 pt-4">
                 {/* header */}

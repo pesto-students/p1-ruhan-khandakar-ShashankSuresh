@@ -12,7 +12,7 @@ const Notes = ({ allNotes, type, getNotesLength }) => {
   return (
     <div className="container m-auto mb-3 mt-10">
       {totalTypesLength >= 1 && <p className="text-neutral-400 mb-2">{type}</p>}
-      <div className="m-auto flex gap-4 pb-3">
+      <div className="m-auto flex gap-4 pb-3 flex-wrap w-full ">
         {Children.toArray(allNotes.map((note) => <Note note={note} />))}
       </div>
     </div>

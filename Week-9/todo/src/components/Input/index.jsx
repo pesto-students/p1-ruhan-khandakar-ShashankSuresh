@@ -46,7 +46,7 @@ const InputBox = () => {
   }, [isInputBoxClicked]);
 
   return (
-    <div className="container m-auto w-1/2">
+    <div className="container md:m-auto md:w-1/2 w-full mt-3">
       {!isInputBoxClicked ? (
         <textarea
           onClick={handleInputBoxClick}
