@@ -9,7 +9,8 @@ import { UPDATE_NOTE } from "context/actionTypes";
 const Note = ({ note }) => {
   const [open, setOpen] = useState(false);
 
-  const { dispatch, updateNote, deleteNote } = useContext(TodoContext);
+  const { dispatch, updateNote, deleteNote, toggleNoteCompletion } =
+    useContext(TodoContext);
 
   const handleDelete = (e) => {
     e.stopPropagation();
@@ -17,6 +18,7 @@ const Note = ({ note }) => {
   };
   const handleComplete = (e) => {
     e.stopPropagation();
+    toggleNoteCompletion(note.id);
   };
   const handleDetails = () => {
     dispatch({

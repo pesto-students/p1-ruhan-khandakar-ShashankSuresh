@@ -63,10 +63,25 @@ const TodoContextProvider = ({ children }) => {
     storeInLocalStorage("notes", allUpdatedNotes);
   };
 
+  const toggleNoteCompletion = (nodeId) => {
+    let allUpdatedNotes = state.allNotes.map((note) => {
+      if (note.id === nodeId) {
+        note.completed = !note.completed;
+      }
+      return note;
+    });
+    dispatch({
+      type: UPDATE_ALL_NOTES,
+      payload: allUpdatedNotes,
+    });
+    storeInLocalStorage("notes", allUpdatedNotes);
+  };
+
   const actions = {
     updateNote,
     fetchNotes,
     deleteNote,
+    toggleNoteCompletion,
   };
 
   return (
