@@ -3,16 +3,18 @@ import { useContext, useEffect } from "react";
 
 import Header from "components/Header";
 import InputBox from "components/Input";
+import Notes from "components/Notes";
 
 import { TodoContext } from "context";
 import { INPUT_BOX_CLICKED } from "context/actionTypes";
 
 const App = () => {
-  const { dispatch, updateNote, fetchNotes, state } = useContext(TodoContext);
+  const { dispatch, updateNote, fetchNotes } = useContext(TodoContext);
 
   const handleBodyClick = ({ target: { dataset } }) => {
-    const { toggle } = dataset || {};
-    if (toggle === "input-box") {
+    const { box } = dataset || {};
+
+    if (box !== "input") {
       updateNote();
       dispatch({
         type: INPUT_BOX_CLICKED,
@@ -23,10 +25,8 @@ const App = () => {
 
   useEffect(() => {
     fetchNotes();
-    console.log("should be call only once");
   }, []);
 
-  console.log("state", state);
   return (
     <div
       className="w-full h-full"
@@ -35,6 +35,7 @@ const App = () => {
     >
       <Header />
       <InputBox />
+      <Notes />
     </div>
   );
 };

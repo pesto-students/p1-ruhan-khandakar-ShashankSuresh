@@ -5,7 +5,11 @@ module.exports = {
       fontFamily: {
         Playfair: ["Playfair Display SC", "cursive"],
       },
+      colors: {
+        gkBorderColor: "#e0e0e0",
+        gkBgColor: "#ffffff",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

@@ -61,6 +61,7 @@ const InputBox = () => {
             name="title"
             onChange={onChange}
             value={noteInputData.title}
+            data-box="input"
           />
           <textarea
             className="resize-none w-full h-14 p-4 pt-3.5 text-sm outline-none rounded-none "
@@ -69,6 +70,7 @@ const InputBox = () => {
             onChange={onChange}
             value={noteInputData.note}
             ref={noteBodyRef}
+            data-box="input"
           />
           <div className="text-right bg-white rounded-b-md pb-2 flex justify-end items-center">
             <button
