@@ -1,8 +1,6 @@
 # Pesto Assignments
 
 Welcome to Pesto assignments.
-
-
 ## How to solve assignments
 
 Weekly Assignments will be shared by your mentor or instructor.
