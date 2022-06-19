@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import Layout from "components/Layout/Layout";
 import SuspenseComponent from "components/Common/SuspenseComponent";
@@ -14,6 +15,11 @@ const NotFoundPage = lazy(() => import("pages/404"));
 function App() {
   return (
     <Layout>
+      {process.env.NODE_ENV === "production" && (
+        <Helmet>
+          <base href="https://p-shortly.netlify.app/" target="_blank"></base>
+        </Helmet>
+      )}
       <Routes>
         <Route
           path="/"
