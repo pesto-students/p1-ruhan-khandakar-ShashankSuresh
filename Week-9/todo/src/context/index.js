@@ -77,7 +77,7 @@ const TodoContextProvider = ({ children }) => {
       type: UPDATE_ALL_NOTES,
       payload: allUpdatedNotes,
     });
-    console.log("allUpdatedNotes", allUpdatedNotes);
+
     storeInLocalStorage("notes", allUpdatedNotes);
   };
 
@@ -96,7 +96,7 @@ const TodoContextProvider = ({ children }) => {
   };
 
   const editNote = (updatedNote) => {
-    console.log("updatedNote", updatedNote);
+
     const allUpdatedNotes = state.allNotes.map((note) => {
       if (note.id === updatedNote.id) {
         if (updatedNote.title) {
@@ -110,7 +110,7 @@ const TodoContextProvider = ({ children }) => {
       }
       return note;
     });
-    console.log("allUpdatedNotes", allUpdatedNotes);
+
     dispatch({
       type: UPDATE_ALL_NOTES,
       payload: allUpdatedNotes,
