@@ -2,6 +2,7 @@ import { useState, lazy } from "react";
 
 import ShortnerDetails from "components/Shortner/Shortner";
 import Input from "components/Shortner/Input";
+import SuspenseComponent from "components/Common/SuspenseComponent";
 const ShortenedUrl = lazy(() => import("components/Shortner/ShortenedUrl"));
 
 const Home = () => {
@@ -15,7 +16,11 @@ const Home = () => {
     <div className="flex-1 p-5">
       <ShortnerDetails />
       <Input handleSetUrlDetails={handleSetUrlDetails} />
-      {!!urlDetails.length && <ShortenedUrl urlDetails={urlDetails} />}
+      {!!urlDetails.length && (
+        <SuspenseComponent>
+          <ShortenedUrl urlDetails={urlDetails} />
+        </SuspenseComponent>
+      )}
     </div>
   );
 };

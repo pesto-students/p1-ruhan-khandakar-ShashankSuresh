@@ -41,24 +41,32 @@ const Input = ({ handleSetUrlDetails }) => {
       }}
       className="card w-full bg-neutral text-neutral-content shadow-lg shadow-cyan-800/20 mt-8"
     >
-      <div className="card-body items-center text-center flex-row justify-between">
-        <input
-          type="text"
-          placeholder="Shorten a link here"
-          className="input input-bordered w-full"
-          onChange={handleChange}
-          value={inputUrl}
-        />
-        <button
-          className={`btn ${
-            loading ? "loading" : "btn-accent"
-          } disabled:text-gray-400 disabled:bg-gray-700 disabled:cursor-not-allowed`}
-          disabled={!inputUrl || loading}
-          onClick={handleSubmit}
-        >
-          Shorten It!
-        </button>
-      </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+      >
+        <div className="card-body items-center text-center flex-row justify-between">
+          <input
+            type="text"
+            placeholder="Shorten a link here"
+            className="input input-bordered w-full"
+            onChange={handleChange}
+            value={inputUrl}
+          />
+          <button
+            className={`btn ${
+              loading ? "loading" : "btn-accent"
+            } disabled:text-gray-400 disabled:bg-gray-700 disabled:cursor-not-allowed`}
+            disabled={!inputUrl || loading}
+            onClick={handleSubmit}
+            type="submit"
+          >
+            Shorten It!
+          </button>
+        </div>
+      </form>
       {errorMessage && (
         <div className="alert alert-error shadow-lg py-0">
           <div>

@@ -1,18 +1,20 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a href="/" className="btn btn-ghost normal-case text-xl">
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
           Shortly
-        </a>
+        </Link>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal p-0">
           <li>
-            <a href="/">Pricing</a>
+            <Link to="/pricing">Pricing</Link>
           </li>
           <li>
-            <a href="/">Contact us</a>
+            <Link to="/about-us">About us</Link>
           </li>
         </ul>
       </div>
