@@ -32,6 +32,15 @@ const TodoContextProvider = ({ children }) => {
           return note;
         });
       } else {
+        const { note, title } = state.noteInputData;
+
+        if (
+          (note !== "" && !note.trim() && !title) ||
+          (title !== "" && !title.trim() && !note)
+        ) {
+          return false;
+        }
+
         allUpdatedNotes = [
           {
             ...state.noteInputData,
