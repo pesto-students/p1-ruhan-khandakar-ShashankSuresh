@@ -37,7 +37,7 @@ const Input = ({ handleSetUrlDetails }) => {
   return (
     <div
       style={{
-        background: `linear-gradient(to right, rgba(0,0,0,0.3) , rgba(0,0,0,0.3)),url(${WaveSvg})`,
+        background: `linear-gradient(to right, rgba(0,0,0,0.3) , rgba(0,0,0,0.3)),url(${WaveSvg}) center center / cover`,
       }}
       className="card w-full bg-neutral text-neutral-content shadow-lg shadow-cyan-800/20 mt-8"
     >
@@ -47,7 +47,7 @@ const Input = ({ handleSetUrlDetails }) => {
           handleSubmit();
         }}
       >
-        <div className="card-body items-center text-center flex-row justify-between">
+        <div className="card-body items-center text-center flex-col justify-between xs:flex-row">
           <input
             type="text"
             placeholder="Shorten a link here"
@@ -58,7 +58,7 @@ const Input = ({ handleSetUrlDetails }) => {
           <button
             className={`btn ${
               loading ? "loading" : "btn-accent"
-            } disabled:text-gray-400 disabled:bg-gray-700 disabled:cursor-not-allowed`}
+            } disabled:text-gray-400 disabled:bg-gray-700 disabled:cursor-not-allowed w-full xs:w-[150px]`}
             disabled={!inputUrl || loading}
             onClick={handleSubmit}
             type="submit"

@@ -12,12 +12,12 @@ const ShortUrlDetails = ({ urlData: { actualUrl, shortUrl } }) => {
   };
 
   return (
-    <div className="card-body items-center text-center flex-row justify-between">
+    <div className="card-body items-center text-center flex-col justify-between xs:flex-row">
       <div className="full-url">{actualUrl}</div>
       <div className="short-url flex items-center">
         <p className="mr-2 text-green-500">{shortUrl}</p>
         <button
-          className="btn btn-accent disabled:text-gray-400 disabled:bg-gray-700 disabled:cursor-not-allowed"
+          className="btn btn-accent disabled:text-gray-400 disabled:bg-gray-700 disabled:cursor-not-allowed h-[1.5rem] min-h-[1.5rem] xs:h-[3rem] xs:min-h-[3rem]"
           onClick={() => handleCopy(shortUrl)}
           disabled={isCopied}
         >
