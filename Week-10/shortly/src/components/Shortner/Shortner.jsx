@@ -1,3 +1,5 @@
+import React from "react";
+
 import ComputerVector from "assets/computer_vector.png";
 
 const Shortner = () => {
@@ -21,4 +23,4 @@ const Shortner = () => {
   );
 };
 
-export default Shortner;
+export default React.memo(Shortner);
