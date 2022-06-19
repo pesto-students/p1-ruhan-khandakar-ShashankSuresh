@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, lazy } from "react";
 
 import ShortnerDetails from "components/Shortner/Shortner";
 import Input from "components/Shortner/Input";
-import ShortenedUrl from "components/Shortner/ShortenedUrl";
+const ShortenedUrl = lazy(() => import("components/Shortner/ShortenedUrl"));
 
 const Home = () => {
   const [urlDetails, setUrlDetails] = useState([]);
