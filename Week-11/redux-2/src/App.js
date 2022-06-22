@@ -1,7 +1,9 @@
+import Steps from "features/steps/Steps";
+
 import "./App.css";
 
 function App() {
-  return <div className="App"></div>;
+  return <Steps />;
 }
 
 export default App;
