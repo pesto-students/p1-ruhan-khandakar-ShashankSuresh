@@ -8,8 +8,8 @@ export const switchSlice = createSlice({
   name: "switch",
   initialState,
   reducers: {
-    toggleSwitch: (state) => {
-      state.isLightOn = !state.isLightOn;
+    toggleSwitch: (state, action) => {
+      state.isLightOn = action.payload;
     },
   },
 });
