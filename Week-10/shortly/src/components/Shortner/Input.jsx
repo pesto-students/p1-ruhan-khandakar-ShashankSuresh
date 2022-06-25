@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-import WaveSvg from "assets/wave.svg";
+// import WaveSvg from "assets/wave.svg";
 
-import { isUrlValid } from "utils";
-import { getShortenResponse } from "./helpers";
+import { getShortenResponse, isUrlValid } from "utils/utils";
 
 const Input = ({ handleSetUrlDetails }) => {
   const [inputUrl, setInputUrl] = useState("");
@@ -16,6 +15,7 @@ const Input = ({ handleSetUrlDetails }) => {
   };
   const handleSubmit = async () => {
     const isValid = isUrlValid(inputUrl);
+    setErrorMessage("");
     if (!isValid) {
       setErrorMessage("Invalid URL");
       return;
@@ -35,12 +35,7 @@ const Input = ({ handleSetUrlDetails }) => {
   };
 
   return (
-    <div
-      style={{
-        background: `linear-gradient(to right, rgba(0,0,0,0.3) , rgba(0,0,0,0.3)),url(${WaveSvg}) center center / cover`,
-      }}
-      className="card w-full bg-neutral text-neutral-content shadow-lg shadow-cyan-800/20 mt-8"
-    >
+    <div className="input-box-bg card w-full bg-neutral text-neutral-content shadow-lg shadow-cyan-800/20 mt-8">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -54,6 +49,7 @@ const Input = ({ handleSetUrlDetails }) => {
             className="input input-bordered w-full"
             onChange={handleChange}
             value={inputUrl}
+            disabled={loading}
           />
           <button
             className={`btn ${

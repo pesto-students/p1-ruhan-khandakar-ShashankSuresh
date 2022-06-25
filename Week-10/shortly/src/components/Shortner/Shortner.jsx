@@ -4,17 +4,17 @@ import ComputerVector from "assets/computer_vector.png";
 
 const Shortner = () => {
   return (
-    <div className="flex flex-col items-center justify-between xs:flex-row">
+    <div className="flex items-center justify-between mx-sm:flex-col">
       <div className="details">
-        <h1 className="text-2xl mt-4  text-center xs:text-5xl md:mt-0  xs:text-left">
+        <h1 className="text-5xl mx-md:text-3xl mx-sm:text-2xl mt-4 text-left md:mt-0  mx-sm:text-center">
           More than just shorter links
         </h1>
-        <p className="text-sm mt-2 text-center xs:mt-8 xs:text-left xs:text-xl">
+        <p className="text-sm mt-2 text-left xs:mt-8 mx-sm:text-center xs:text-xl">
           Build your brand's recognition and <br /> get detailed insights on how
           your links are performing
         </p>
       </div>
-      <div className="img -order-1 xs:order-last">
+      <div className="img  mx-sm:-order-1">
         <img
           src={ComputerVector}
           alt="computer_vector"
