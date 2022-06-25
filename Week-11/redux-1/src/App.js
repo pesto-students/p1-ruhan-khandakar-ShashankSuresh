@@ -5,7 +5,7 @@ import Switch from "features/switch/Switch";
 import "./App.css";
 
 function App() {
-  const { isLightOn } = useSelector((state) => state.theme);
+  const { isLightOn } = useSelector((state) => state.switch);
 
   return (
     <div className={`container ${!isLightOn ? "dark" : ""}`}>

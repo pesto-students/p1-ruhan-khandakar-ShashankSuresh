@@ -1,9 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import switchReducer from "features/switch/switchSlice";
+import reducer from "./reducers";
 
 export const store = configureStore({
-  reducer: {
-    theme: switchReducer,
-  },
+  reducer,
 });

@@ -1,3 +1,9 @@
+:root {
+  --bg-dark: rgb(42, 48, 60);
+  --white: #fff;
+  --black: #000;
+}
+
 .container {
   height: 100%;
   width: 100%;
@@ -8,7 +14,7 @@
   align-items: center;
 }
 .container.dark {
-  background: rgb(42, 48, 60);
+  background: var(--bg-dark);
 }
 
 p {
@@ -16,10 +22,10 @@ p {
   margin-bottom: 1rem;
 }
 p.light {
-  color: #000;
+  color: var(--black);
 }
 p.dark {
-  color: #fff;
+  color: var(--white);
 }
 
 .switch-container {
@@ -36,7 +42,7 @@ p.dark {
 .label {
   width: 50px;
   height: 26px;
-  background-color: #111;
+  background-color: var(--black);
   display: flex;
   border-radius: 50px;
   align-items: center;
@@ -49,7 +55,7 @@ p.dark {
 .ball {
   width: 20px;
   height: 20px;
-  background-color: white;
+  background-color: var(--white);
   position: absolute;
   top: 2px;
   left: 2px;

@@ -22,7 +22,6 @@ const Button = ({
   fontWeight = "normal",
   ...props
 }) => {
-  console.log("rerender check");
   const getPaddingOrMargin = () => {
     const styles = {};
     const allProperties = [
@@ -36,9 +35,10 @@ const Button = ({
         styles[actualProperty] = props[property];
       }
     });
+
     return styles;
   };
-  getPaddingOrMargin();
+
   return (
     <button
       className={styles.button}
