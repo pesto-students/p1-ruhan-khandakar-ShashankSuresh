@@ -1,5 +1,6 @@
-import { FaMoon, FaSun } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+
+import { MoonIcon, SunIcon } from "icons/icons";
 
 import { toggleSwitch } from "./switchSlice";
 
@@ -18,8 +19,8 @@ const Switch = () => {
         onChange={handleChange}
       />
       <label htmlFor="checkbox" className="label">
-        <FaMoon color="pink" />
-        <FaSun color="yellow" />
+        <MoonIcon color="pink" />
+        <SunIcon color="yellow" />
         <div className="ball" />
       </label>
     </div>
