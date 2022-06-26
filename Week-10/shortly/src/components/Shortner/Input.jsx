@@ -1,13 +1,18 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 
-// import WaveSvg from "assets/wave.svg";
-
-import { getShortenResponse, isUrlValid } from "utils/utils";
+import useAPI from "hooks/useAPI";
+import { isUrlValid } from "utils/utils";
 
 const Input = ({ handleSetUrlDetails }) => {
   const [inputUrl, setInputUrl] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(false);
+  const {
+    callApi,
+    loading,
+    data: response,
+    error,
+  } = useAPI(`https://api.shrtco.de/v2/shorten?url=${inputUrl}`);
 
   const handleChange = ({ target: { value } }) => {
     setErrorMessage("");
@@ -20,19 +25,23 @@ const Input = ({ handleSetUrlDetails }) => {
       setErrorMessage("Invalid URL");
       return;
     }
-    setLoading(true);
-    const response = await getShortenResponse(inputUrl);
-    if (response.error) {
-      setErrorMessage(response.error);
-    } else {
+    await callApi();
+  };
+
+  useEffect(() => {
+    if (error) {
+      setErrorMessage(error);
+      return;
+    }
+
+    if (response) {
       handleSetUrlDetails({
         actualUrl: inputUrl,
-        shortUrl: response.url,
+        shortUrl: response.result.full_short_link,
       });
       setInputUrl("");
     }
-    setLoading(false);
-  };
+  }, [response, error]);
 
   return (
     <div className="input-box-bg card w-full bg-neutral text-neutral-content shadow-lg shadow-cyan-800/20 mt-8">

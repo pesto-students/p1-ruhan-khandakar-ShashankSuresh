@@ -4,8 +4,9 @@ import { useRoutes } from "react-router-dom";
 import Layout from "components/Layout/Layout";
 import SuspenseComponent from "components/Common/SuspenseComponent";
 
-import "./App.css";
 import routeList from "RouteList";
+
+import "./App.css";
 
 const getAllRoutes = () =>
   routeList.map((route) => ({
