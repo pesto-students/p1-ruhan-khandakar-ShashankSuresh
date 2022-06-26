@@ -12,7 +12,7 @@ const Input = ({ handleSetUrlDetails }) => {
     loading,
     data: response,
     error,
-  } = useAPI(`https://api.shrtco.de/v2/shorten?url=${inputUrl}`);
+  } = useAPI(`https://api.shrtco.de/v2/shorten`);
 
   const handleChange = ({ target: { value } }) => {
     setErrorMessage("");
@@ -25,7 +25,9 @@ const Input = ({ handleSetUrlDetails }) => {
       setErrorMessage("Invalid URL");
       return;
     }
-    await callApi();
+    await callApi({
+      url: inputUrl,
+    });
   };
 
   useEffect(() => {
