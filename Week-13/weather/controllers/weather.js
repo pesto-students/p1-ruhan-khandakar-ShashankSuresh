@@ -4,19 +4,17 @@ const {
   getWeatherData,
 } = require("../services/weather");
 
-/* 
-    @desc       Get weather details
-    @route      GET /weather/cites/:cityName
-    @access     Public
-    @details
-            date format: DD-MM-YYYY
-*/
+/*
+ *    @desc       Get weather details
+ *    @route      GET /weather/cites/:cityName
+ *    @access     Public
+ *    @details
+ *            date format: yyyy-MM-dd
+ */
 exports.getWeatherDetails = asyncHandler(async (req, res) => {
   const queryDetails = getParamsAndQueryFromUrl(req);
 
-  const defaultQuery = "auto:ip";
-
-  const response = await getWeatherData({ ...queryDetails, defaultQuery });
+  const response = await getWeatherData(queryDetails);
 
   if (!response.success) {
     return res.status(400).json({
@@ -24,7 +22,6 @@ exports.getWeatherDetails = asyncHandler(async (req, res) => {
       message: response.error,
     });
   }
-  console.log("response", response);
 
   return res.json({
     success: true,

@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 require("colors");
 
@@ -22,12 +23,18 @@ if (process.env.NODE_ENV === "development") {
 // Express middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")));
 
-// Error handler middleware
-app.use(errorHandler);
+// Home route (API Details)
+app.get("/", (req, res) => {
+  res.sendFile("index.html");
+});
 
 // Mount routes
 app.use("/weather", weatherRouter);
+
+// Error handler middleware
+app.use(errorHandler);
 
 // Start Server
 const PORT = port || 8080;
