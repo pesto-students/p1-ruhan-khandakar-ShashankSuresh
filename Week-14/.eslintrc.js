@@ -15,6 +15,7 @@ module.exports = {
   rules: {
     "no-console": "off",
     "comma-dangle": [0, "ignore"],
+    "object-curly-newline": [0, "ignore"],
     "import/no-extraneous-dependencies": [0, "ignore"],
     "no-trailing-spaces": ["error", { ignoreComments: true }],
     "arrow-parens": [0, "always"],

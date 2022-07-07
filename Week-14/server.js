@@ -9,7 +9,11 @@ const helmet = require("helmet");
 const hpp = require("hpp");
 const cors = require("cors");
 const expressRateLimit = require("express-rate-limit");
-const { port } = require("./config");
+const cookieParser = require("cookie-parser");
+
+const rootRouter = require("./routes/v1");
+
+const { port, env } = require("./config");
 
 // Custom module
 const errorHandler = require("./middlewares/error");
@@ -21,7 +25,7 @@ const connectDB = require("./config/db");
 const app = express();
 
 // Dev logging middleware
-if (process.env.NODE_ENV === "development") {
+if (env === "development") {
   // eslint-disable-next-line global-require
   const morgan = require("morgan");
   app.use(morgan("dev"));
@@ -31,6 +35,9 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+
+// Cookie middleware
+app.use(cookieParser());
 
 // Security middlewares
 app.use(mongoSanitize());
@@ -46,6 +53,9 @@ app.use(cors());
 // File uploading
 app.use(fileUpload());
 
+// Root Router
+app.use("/api/v1", rootRouter);
+
 // Error handler middleware
 app.use(errorHandler);
 
@@ -57,7 +67,7 @@ app.use(errorHandler);
 
     const PORT = port || 8080;
     const server = app.listen(PORT, () => {
-      console.log(`Server Running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold);
+      console.log(`Server Running in ${env} mode on port ${PORT}`.yellow.bold);
     });
 
     // Handle unhandeled promise error
