@@ -15,6 +15,16 @@ const checkIsFutureDate = (date, numberOfDays = 10) => {
   return diff > numberOfDays;
 };
 
+/**
+ *
+ * @param {*} obj
+ * @desc isEmpty check
+ */
+const isEmpty = (obj) =>
+  [Object, Array].includes((obj || {}).constructor) &&
+  !Object.entries(obj || {}).length;
+
 module.exports = {
   checkIsFutureDate,
+  isEmpty,
 };

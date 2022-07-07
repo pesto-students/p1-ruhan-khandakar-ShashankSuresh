@@ -1,7 +1,25 @@
 const axios = require("axios");
 
-const { weatherAPIBaseUrl, weatherAPIKey } = require("../config");
-const { checkIsFutureDate } = require("../utils/utils");
+const {
+  weatherAPIBaseUrl,
+  weatherAPIKey,
+  openWeatherAPIKey,
+  openWeatherAPI,
+} = require("../config");
+const { checkIsFutureDate, isEmpty } = require("../utils/utils");
+const citiesData = require("../citiesData.json");
+
+const topCities = [
+  "mumbai",
+  "delhi",
+  "kolkata",
+  "chennai",
+  "bengaluru",
+  "hyderabad",
+  "jaipur",
+  "ahmedabad",
+  "pune",
+];
 
 const getParamsAndQueryFromUrl = ({ query, params }) => {
   const { cityName } = params;
@@ -13,6 +31,10 @@ const getParamsAndQueryFromUrl = ({ query, params }) => {
     date,
     hour,
   } = query;
+
+  if (isEmpty(query) && !cityName) {
+    return {};
+  }
 
   if (days && (+days > 10 || +days < 0)) {
     throw new Error("Invalid days. Days must be between 0 and 10");
@@ -28,7 +50,33 @@ const getParamsAndQueryFromUrl = ({ query, params }) => {
   };
 };
 
+const prepareQueryForOpenWeatherApi = () => {
+  const allTopCitiesCode = topCities
+    .map((city) => citiesData[city]?.id)
+    .filter(Boolean);
+
+  const params = {
+    id: allTopCitiesCode.join(","),
+    units: "metric",
+    appid: openWeatherAPIKey,
+  };
+  const URL = `${openWeatherAPI}/group`;
+  const message = `Due to some limitations in the OpenWeather API, we're able showing only ${topCities.join(
+    ","
+  )} cities data`;
+  return {
+    URL,
+    params,
+    message,
+  };
+};
+
 const getParamsAndUrl = (queryData) => {
+  if (isEmpty(queryData)) {
+    const res = prepareQueryForOpenWeatherApi();
+    return res;
+  }
+
   const defaultQuery = "auto:ip";
 
   let jsonType = "current";
@@ -69,11 +117,12 @@ const getParamsAndUrl = (queryData) => {
 */
 const getWeatherData = async (queryData) => {
   try {
-    const { URL, params } = getParamsAndUrl(queryData);
+    const { URL, params, message } = getParamsAndUrl(queryData);
 
     const { data } = await axios.get(URL, { params });
     return {
       success: true,
+      message: message || "",
       data,
     };
   } catch (error) {

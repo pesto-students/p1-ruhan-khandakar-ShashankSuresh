@@ -25,6 +25,7 @@ exports.getWeatherDetails = asyncHandler(async (req, res) => {
 
   return res.json({
     success: true,
+    message: response.message,
     data: response.data,
   });
 });
