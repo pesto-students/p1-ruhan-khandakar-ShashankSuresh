@@ -58,6 +58,11 @@ app.use(
   })
 );
 
+// Home route (API Details)
+app.get("/", (req, res) => {
+  res.sendFile("index.html");
+});
+
 // Root Router
 app.use("/api/v1", rootRouter);
 
