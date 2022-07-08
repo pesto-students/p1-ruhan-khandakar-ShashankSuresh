@@ -2,7 +2,7 @@ const httpStatus = require("http-status");
 
 const Fund = require("../models/Fund");
 
-const { fundCheck, updateFund } = require("../services/fund.services");
+const { fundCheck, updateFund, emailNotify } = require("../services/fund.services");
 
 const asyncHandler = require("../middlewares/asyncMiddleware");
 
@@ -17,8 +17,11 @@ exports.createFund = asyncHandler(async (req, res) => {
 
   const fund = await Fund.create(req.body);
 
+  emailNotify(fund, "create");
+
   res.status(httpStatus.CREATED).json({
     success: true,
+    message: "Fund created successfully. You'll receive a mail shortly. Please check spam also.",
     data: fund,
   });
 });
@@ -56,9 +59,11 @@ exports.updateFund = asyncHandler(async (req, res) => {
 
   const response = await updateFund(fund._id, req.body);
 
+  emailNotify(response, "update");
+
   return res.status(httpStatus.OK).json({
     success: true,
-    message: "Successfully updated",
+    message: "Fund updated successfully. You'll receive a mail shortly. Please check spam also.",
     data: response,
   });
 });
