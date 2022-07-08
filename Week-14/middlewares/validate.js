@@ -12,6 +12,9 @@ const validate = (schema) => (req, _, next) => {
     .validate(object);
 
   if (error) {
+    if (error.message) {
+      return next(new ErrorResponse(error.message, httpStatus.BAD_REQUEST));
+    }
     const errorMessage = error.details.map((details) => details.message).join(", ");
     return next(new ErrorResponse(errorMessage, httpStatus.BAD_REQUEST));
   }

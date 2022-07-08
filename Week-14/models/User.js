@@ -27,11 +27,11 @@ const UserSchema = new mongoose.Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now(),
+      default: Date.now,
     },
     updatedAt: {
       type: Date,
-      default: Date.now(),
+      default: Date.now,
     },
   },
   { collection: "users" }
@@ -72,6 +72,12 @@ UserSchema.methods.getResetPasswordToken = function getResetPasswordToken() {
   this.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
 
   return resetToken;
+};
+
+UserSchema.methods.toJSON = function excludeSomeFields() {
+  const obj = this.toObject();
+  delete obj.__v;
+  return obj;
 };
 
 module.exports = mongoose.model("User", UserSchema);
