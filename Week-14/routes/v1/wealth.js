@@ -6,7 +6,13 @@ const validate = require("../../middlewares/validate");
 const advancedResults = require("../../middlewares/advanceResults");
 
 // Controllers
-const { createWealth, getAllWealths } = require("../../controllers/wealth");
+const {
+  createWealth,
+  getAllWealths,
+  updateWealth,
+  getWealthDetailsById,
+  deleteWealth,
+} = require("../../controllers/wealth");
 
 // Validators
 const wealthValidations = require("../../validations/wealth.validations");
@@ -20,5 +26,11 @@ router
   .route("/")
   .post(protect, validate(wealthValidations.createWealth), createWealth)
   .get(protect, advancedResults(Wealth), getAllWealths);
+
+router
+  .route("/:wealthId")
+  .get(protect, getWealthDetailsById)
+  .put(protect, validate(wealthValidations.updateWealth), updateWealth)
+  .delete(protect, deleteWealth);
 
 module.exports = router;
