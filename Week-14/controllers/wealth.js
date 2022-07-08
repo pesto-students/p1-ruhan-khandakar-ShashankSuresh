@@ -19,3 +19,12 @@ exports.createWealth = asyncHandler(async (req, res) => {
     data: wealth,
   });
 });
+
+/**
+ * @desc       Get All Wealths
+ * @route      GET /api/v1/wealth
+ * @access     Private
+ */
+exports.getAllWealths = asyncHandler(async (req, res) => {
+  res.status(httpStatus.OK).json(res.advancedResults);
+});
