@@ -4,7 +4,12 @@ const asyncHandler = require("../middlewares/asyncMiddleware");
 
 const ErrorResponse = require("../utils/errorResponse");
 
-const { uploadFile, insertAssetData } = require("../services/asset.services");
+const {
+  uploadFile,
+  insertAssetData,
+  assetCheck,
+  deleteFileFromCloudinary,
+} = require("../services/asset.services");
 
 /**
  * @desc       Upload asset
@@ -36,5 +41,46 @@ exports.uploadAsset = asyncHandler(async (req, res, next) => {
   return res.status(httpStatus.CREATED).json({
     success: true,
     data: insertedData,
+  });
+});
+
+/**
+ * @desc       Get All Assets
+ * @route      GET /api/v1/assets
+ * @access     Private
+ */
+exports.getAllAssets = asyncHandler(async (req, res) => {
+  res.status(httpStatus.OK).json(res.advancedResults);
+});
+
+/**
+ * @desc       Get Single asset Details
+ * @route      GET /api/v1/assets/:assetId
+ * @access     Private
+ */
+exports.getAssetDetailsById = asyncHandler(async (req, res) => {
+  const asset = await assetCheck(req);
+
+  return res.status(httpStatus.OK).json({
+    success: true,
+    data: asset,
+  });
+});
+
+/**
+ * @desc       Delete asset
+ * @route      DELETE /api/v1/assets/:assetId
+ * @access     Private
+ */
+exports.deleteAsset = asyncHandler(async (req, res) => {
+  const asset = await assetCheck(req);
+
+  await deleteFileFromCloudinary(asset.uploaderResponse.publicId);
+
+  await asset.remove();
+
+  return res.status(httpStatus.OK).json({
+    success: true,
+    message: "Successfully Deleted",
   });
 });

@@ -1,8 +1,30 @@
 const fs = require("fs");
 
+const httpStatus = require("http-status");
+
 const Asset = require("../models/Asset");
 
 const cloudinary = require("../utils/cloudinary");
+const ErrorResponse = require("../utils/errorResponse");
+
+/**
+ *
+ * @param {Express Request} req
+ * @returns {<Asset>}
+ * @details check asset for loggedIn user and given asset Id
+ */
+const assetCheck = async (req) => {
+  const userId = req.user.id;
+  const { assetId } = req.params;
+
+  const asset = await Asset.findOne({ user: userId, _id: assetId });
+
+  if (!asset) {
+    throw new ErrorResponse("Data not found", httpStatus.UNAUTHORIZED);
+  }
+
+  return asset;
+};
 
 /**
  *
@@ -56,7 +78,13 @@ const insertAssetData = async (assetData) => {
   return response;
 };
 
+const deleteFileFromCloudinary = async (cloudinaryId) => {
+  // Delete file from cloudinary
+  await cloudinary.uploader.destroy(cloudinaryId);
+};
 module.exports = {
   uploadFile,
   insertAssetData,
+  assetCheck,
+  deleteFileFromCloudinary,
 };
