@@ -1,4 +1,15 @@
+/* eslint-disable no-param-reassign */
 const { getStartDateEndDateByMonth } = require("../utils/utils");
+
+const getDateFilterByMonth = (queryStr, type) => {
+  if (queryStr[type] && Number(queryStr[type])) {
+    const { startDate, endDate } = getStartDateEndDateByMonth(+queryStr[type]);
+    queryStr[type] = {
+      $gte: new Date(startDate),
+      $lte: new Date(endDate),
+    };
+  }
+};
 
 /**
  *
@@ -32,13 +43,11 @@ const advancedResults = (model, populate) => async (req, res, next) => {
   queryStr.user = userId;
 
   // if wealthDate provided and  value is number
-  if (queryStr.wealthDate && Number(queryStr.wealthDate)) {
-    const { startDate, endDate } = getStartDateEndDateByMonth(+queryStr.wealthDate);
-    queryStr.wealthDate = {
-      $gte: new Date(startDate),
-      $lte: new Date(endDate),
-    };
-  }
+  getDateFilterByMonth(queryStr, "wealthDate");
+  // if fundDate provided and  value is number
+  getDateFilterByMonth(queryStr, "fundDate");
+  // if asset createdAt provided and  value is number
+  getDateFilterByMonth(queryStr, "createdAt");
 
   query = model.find(queryStr);
 
