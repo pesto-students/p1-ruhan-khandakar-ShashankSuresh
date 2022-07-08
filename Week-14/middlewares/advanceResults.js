@@ -1,3 +1,5 @@
+const { getStartDateEndDateByMonth } = require("../utils/utils");
+
 /**
  *
  * @param {Model} model
@@ -28,6 +30,16 @@ const advancedResults = (model, populate) => async (req, res, next) => {
   // Finding Resource
   queryStr = JSON.parse(queryStr);
   queryStr.user = userId;
+
+  // if wealthDate provided and  value is number
+  if (queryStr.wealthDate && Number(queryStr.wealthDate)) {
+    const { startDate, endDate } = getStartDateEndDateByMonth(+queryStr.wealthDate);
+    queryStr.wealthDate = {
+      $gte: new Date(startDate),
+      $lte: new Date(endDate),
+    };
+  }
+
   query = model.find(queryStr);
 
   // Select fields

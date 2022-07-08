@@ -79,7 +79,6 @@ app.use(errorHandler);
     const server = app.listen(PORT, () => {
       console.log(`Server Running in ${env} mode on port ${PORT}`.yellow.bold);
     });
-
     // Handle unhandeled promise error
     process.on("unhandledRejection", (err) => {
       console.error(`Error:  ${err.message}`.inverse.red);
