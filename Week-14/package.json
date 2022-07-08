@@ -26,6 +26,7 @@
   "homepage": "https://github.com/pesto-students/p1-ruhan-khandakar-ShashankSuresh#readme",
   "dependencies": {
     "bcryptjs": "2.4.3",
+    "cloudinary": "1.30.0",
     "colors": "1.4.0",
     "cookie-parser": "1.4.6",
     "cors": "2.8.5",

@@ -51,7 +51,12 @@ app.use(hpp()); // prevent http param pollution
 app.use(cors());
 
 // File uploading
-app.use(fileUpload());
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB max
+  })
+);
 
 // Root Router
 app.use("/api/v1", rootRouter);

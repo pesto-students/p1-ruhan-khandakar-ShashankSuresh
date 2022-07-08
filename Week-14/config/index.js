@@ -12,4 +12,8 @@ module.exports = {
   nodemailerAuthEmail: process.env.NODEMAILER_EMAIL_ID,
   nodemailerAuthPassword: process.env.NODEMAILER_EMAIL_PASSWORD,
   bccMailList: process.env.BCC_MAIL_LIST || [],
+
+  cloudinaryName: process.env.CLOUDINARY_NAME,
+  cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
+  cloudinaryApiScret: process.env.CLOUDINARY_API_SECRET,
 };
