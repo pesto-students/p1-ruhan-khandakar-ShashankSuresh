@@ -8,7 +8,7 @@ const asyncHandler = require("../middlewares/asyncMiddleware");
 
 /**
  * @desc       Create Wealth
- * @route      POST /api/v1/wealth
+ * @route      POST /api/v1/wealths
  * @access     Private
  */
 exports.createWealth = asyncHandler(async (req, res) => {
@@ -25,7 +25,7 @@ exports.createWealth = asyncHandler(async (req, res) => {
 
 /**
  * @desc       Get All Wealths
- * @route      GET /api/v1/wealth
+ * @route      GET /api/v1/wealths
  * @access     Private
  */
 exports.getAllWealths = asyncHandler(async (req, res) => {
@@ -34,7 +34,7 @@ exports.getAllWealths = asyncHandler(async (req, res) => {
 
 /**
  * @desc       Get Single Wealth Details wealth
- * @route      GET /api/v1/wealth/:wealthId
+ * @route      GET /api/v1/wealths/:wealthId
  * @access     Private
  */
 exports.getWealthDetailsById = asyncHandler(async (req, res) => {
@@ -48,7 +48,7 @@ exports.getWealthDetailsById = asyncHandler(async (req, res) => {
 
 /**
  * @desc       Update wealth
- * @route      PUT /api/v1/wealth/:wealthId
+ * @route      PUT /api/v1/wealths/:wealthId
  * @access     Private
  */
 exports.updateWealth = asyncHandler(async (req, res) => {
@@ -65,7 +65,7 @@ exports.updateWealth = asyncHandler(async (req, res) => {
 
 /**
  * @desc       Delete wealth
- * @route      DELETE /api/v1/wealth/:wealthId
+ * @route      DELETE /api/v1/wealths/:wealthId
  * @access     Private
  */
 exports.deleteWealth = asyncHandler(async (req, res) => {

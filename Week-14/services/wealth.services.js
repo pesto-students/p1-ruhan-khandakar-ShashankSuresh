@@ -23,10 +23,13 @@ const wealthCheck = async (req) => {
   return wealth;
 };
 
+/**
+ *
+ * @param {string} wealthId
+ * @returns {Object} bodyData
+ * @details Update wealth details
+ */
 const updateWealth = async (wealthId, bodyData) => {
-  console.log("wealthId", wealthId);
-  console.log("bodyData", bodyData);
-
   const wealth = await Wealth.findByIdAndUpdate(wealthId, bodyData, {
     runValidators: true,
     new: true, // for returning updated document

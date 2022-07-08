@@ -13,7 +13,9 @@ const createWealth = {
       .greater(0)
       .required()
       .error(new Error("wealthAmount muse be greater than zero")),
-    wealthDate: Joi.date().required().error(new Error("wealthDate is required")),
+    wealthDate: Joi.date()
+      .required()
+      .error(new Error("wealthDate is required and must be a valid date")),
   }),
 };
 
