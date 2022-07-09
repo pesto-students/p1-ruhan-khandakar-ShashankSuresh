@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@200;300;400;700&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --body-background-color: #edf2f8;
+  --light-red: #f88c8b;
+  --light-blue: lightblue;
+  --light-yellow: lightyellow;
+  --light-green: lightgreen;
+  --shadow-color: rgba(17, 12, 46, 0.2);
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: var(--body-background-color);
+  font-family: "Barlow Semi Condensed", sans-serif;
+  line-height: 1.7;
+  font-size: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  box-shadow: var(--shadow-color) 0px 1px 6px 0px;
+  padding: 1rem;
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  position: relative;
+
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+
+.container .container__text {
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.container .box {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+
+  transition: all 1s ease-in-out;
+  transition: transform 1s linear;
+  transform-style: preserve-3D;
+}
+
+.container .box--red {
+  background: var(--light-red);
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}
+.container .box--blue {
+  background: var(--light-blue);
+  bottom: 0;
+  left: 0;
+  transform-origin: bottom left;
+}
+.container .box--yellow {
+  background: var(--light-yellow);
+  top: 0;
+  right: 0;
+  transform-origin: top right;
+}
+.container .box--green {
+  background: var(--light-green);
+  bottom: 0;
+  right: 0;
+  transform-origin: bottom right;
+}
+
+.container:hover .box--red,
+.container:hover .box--green {
+  transform: rotate(90deg);
+}
+
+.container:hover .box--yellow,
+.container:hover .box--blue {
+  transform: rotate(-90deg);
+}
